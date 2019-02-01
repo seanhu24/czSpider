@@ -4,6 +4,8 @@ import logging
 import requests
 import json
 import re
+import schedule
+import time
 
 from logging.config import fileConfig
 from urllib.parse import urlencode
@@ -12,6 +14,7 @@ from math import ceil
 
 from config import *
 from db_utils import *
+
 
 fileConfig('logging_config.ini')
 logger = logging.getLogger('sLogger')
@@ -186,6 +189,14 @@ def main():
         if upsert_to_mongo({'id': full_notice.get('id')}, full_notice):
             logger.info('更新/插入[%s]成功' % full_notice.get('id'))
 
+
+schedule.every().day.at(FIRE_TIME1).do(main)
+schedule.every().day.at(FIRE_TIME2).do(main)
+
+while True:
+    schedule.run_pending()
+    # logger.info('tick tack...')
+    time.sleep(1)
 
 if __name__ == "__main__":
     main()
