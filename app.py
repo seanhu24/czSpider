@@ -132,7 +132,7 @@ def tidy_notice_content(text):
     cleanr = re.compile('<(.*?)>', re.S)
     d1 = re.sub(cleanr, '', text)
     d2 = re.sub('&nbsp;', ' ', d1)
-    d3 = re.sub('^table(.*?);}', '', d2)
+    d3 = re.sub('^(table|th)(.*?);}', '', d2)
 
     return ''.join(d3.splitlines())
 
