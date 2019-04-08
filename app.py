@@ -193,6 +193,8 @@ def main():
             if bk not in title:
                 if upsert_to_mongo({'id': full_notice.get('id')}, full_notice):
                     logger.info('更新/插入[%s]成功' % full_notice.get('id'))
+            else:
+                logger.info('标题%s包含关键字%s,忽略' % (title, bk))
 
 
 schedule.every().day.at(FIRE_TIME1).do(main)
