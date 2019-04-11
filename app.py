@@ -20,11 +20,6 @@ fileConfig('logging_config.ini')
 logger = logging.getLogger('sLogger')
 
 
-# TODO
-# 1. 检查需要爬取的明细是否在数据库中
-# 2. 增加爬取日志
-# 3. 取数据库记录并发送后台
-
 def merge_list(l1, l2, key):
     merged = {}
     for item in l1 + l2:
@@ -139,6 +134,14 @@ def tidy_notice_content(text):
 
 
 def main():
+    zjs()
+
+
+def zjs():
+    '''
+        浙江省政府采购网
+    '''
+
     key_words = KEYWORDS
     urls = []
     notices = []  # 摘要
@@ -206,12 +209,8 @@ schedule.every().day.at(FIRE_TIME2).do(main)
 
 while True:
     schedule.run_pending()
-    logger.info('tick tack...')
+    # logger.info('tick tack...')
     time.sleep(1)
 
 if __name__ == "__main__":
     main()
-    # l1 = [{'id': 1, 'name': 'huhu'}, {'id': 2, 'name': 'lll'}]
-    # l2 = [{'id': 1, 'age': 22}, {'id': 3, 'age': 23}]
-    # l3 = merge_list(l1, l2, 'id')
-    # print(l3)
