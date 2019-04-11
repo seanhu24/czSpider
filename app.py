@@ -189,12 +189,16 @@ def main():
         # print(full_notice.get('id'), len(full_notice))
         # 检查标题关键字是否在黑名单中
         title = full_notice.get('title')
+        ok = True
         for bk in BLACK_LIST:
-            if bk not in title:
-                if upsert_to_mongo({'id': full_notice.get('id')}, full_notice):
-                    logger.info('更新/插入[%s]成功' % full_notice.get('id'))
-            else:
-                logger.info('标题%s包含关键字%s,忽略' % (title, bk))
+            if bk in title:
+                logger.info('[%s]标题%s包含关键字%s,忽略' %
+                            (full_notice.get('id'), title, bk))
+                ok = False
+
+        if ok:
+            if upsert_to_mongo({'id': full_notice.get('id')}, full_notice):
+                logger.info('更新/插入[%s]成功' % full_notice.get('id'))
 
 
 schedule.every().day.at(FIRE_TIME1).do(main)
@@ -202,7 +206,7 @@ schedule.every().day.at(FIRE_TIME2).do(main)
 
 while True:
     schedule.run_pending()
-    # logger.info('tick tack...')
+    logger.info('tick tack...')
     time.sleep(1)
 
 if __name__ == "__main__":
