@@ -200,6 +200,7 @@ def zjs():
                 ok = False
 
         if ok:
+            full_notice['source'] = '浙江政务服务网'
             if upsert_to_mongo({'id': full_notice.get('id')}, full_notice):
                 logger.info('更新/插入[%s]成功' % full_notice.get('id'))
 
