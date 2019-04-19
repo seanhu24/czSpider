@@ -32,9 +32,10 @@ def update_hidden_tags(soup, tags, page_no):
     return tags
 
 
-def get_a_index(tags):
+def get_a_index(url, tags):
+    # print(url)
     logger.info('抓取第%s页' % tags['__EVENTARGUMENT'])
-    url = SX_MAIN_ZB_LINK
+    # url = SX_MAIN_ZB_LINK
 
     rt = []
 
@@ -123,7 +124,7 @@ def sxbj_zb():
     for i in range(1, int(page_num) + 1):
         hidden_tags = update_hidden_tags(page, hidden_tags, i)
         time.sleep(1)
-        (a_index, page) = get_a_index(hidden_tags)
+        (a_index, page) = get_a_index(url, hidden_tags)
         if a_index:
             all_items.extend(a_index)
         else:
@@ -202,7 +203,7 @@ def sxbj_zb2():
     for i in range(1, int(page_num) + 1):
         hidden_tags = update_hidden_tags(page, hidden_tags, i)
         time.sleep(1)
-        (a_index, page) = get_a_index(hidden_tags)
+        (a_index, page) = get_a_index(url, hidden_tags)
         if a_index:
             all_items.extend(a_index)
         else:
@@ -214,6 +215,7 @@ def sxbj_zb2():
     for a_item in all_items:
         # 检查标题关键字
         title = a_item.get('title')
+        # print(title)
         id = a_item.get('id')
         white_key = False
         black_key = True
@@ -249,5 +251,5 @@ def sxbj_zb2():
 
 
 if __name__ == "__main__":
-    sxbj_zb()
-    # sxbj_zb2()
+    # sxbj_zb()
+    sxbj_zb2()
