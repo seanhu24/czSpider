@@ -14,6 +14,8 @@ from math import ceil
 
 from config import *
 from db_utils import *
+from app_sx import *
+from request_utils import *
 
 
 fileConfig('logging_config.ini')
@@ -30,17 +32,17 @@ def merge_list(l1, l2, key):
     return [val for (_, val) in merged.items()]
 
 
-def get_one_url(url):
-    # logger.info('爬取url:' + url)
-    try:
-        resp = requests.get(url)
-        if resp.status_code == 200:
-            resp.encoding = 'utf-8'  # 解决中文问题
-            return resp.text
-        return None
-    except RequestException:
-        print('请求索引页出错')
-        return None
+# def get_one_url(url):
+#     # logger.info('爬取url:' + url)
+#     try:
+#         resp = requests.get(url)
+#         if resp.status_code == 200:
+#             resp.encoding = 'utf-8'  # 解决中文问题
+#             return resp.text
+#         return None
+#     except RequestException:
+#         print('请求索引页出错')
+#         return None
 
 
 def parse_key_count(html):
@@ -134,7 +136,12 @@ def tidy_notice_content(text):
 
 
 def main():
+    # 浙江省本级
     zjs()
+    # 绍兴本级招标
+    sxbj_zb()
+    # 绍兴本级中标
+    sxbj_zb2()
 
 
 def zjs():
