@@ -1,10 +1,10 @@
-KEYWORDS = ['存款', '公款', '结算账户', '专户', '存放银行', '存放定期', '存放资金',
+KEYWORDS = ['存款', '公款', '结算账户', '专户', '存放', '存放银行', '存放定期', '存放资金',
             '存放公款', '存放定点', '存放账户', '存放金融', '存放养老金',
             '存放备用金', '存放保证金', '存放公积金', '代理银行', '开户银行',
             '资金银行', '基本户', '一般户', '账户开户', '基本账户', '一般账户', '银行账户', '开立账户']
 BLACK_LIST = ['反向竞价', '在线询价']
-# MONGO_URL = 'localhost:17027'
-MONGO_URL = '120.193.61.37:17027'
+MONGO_URL = 'localhost:17027'
+# MONGO_URL = '120.193.61.37:17027'
 MONGO_DB = 'czck'
 MONGO_TABLE = 'czck'
 
@@ -18,5 +18,10 @@ SX_MAIN_ZB_LINK = 'http://www.sxztb.gov.cn:33660/sxweb/fzxjy/007001/MoreInfo.asp
 # 绍兴市公共资源交易网-中标
 SX_MAIN_ZB2_LINK = 'http://www.sxztb.gov.cn:33660/sxweb/fzxjy/007002/MoreInfo.aspx?CategoryNum=007002'
 
+
+# 嘉兴市公共资源交易中心
+JX_GGZY_MAIN_LINK = 'http://www.jxzbtb.cn'
+JX_GGZY_SEARCH_LINK = 'http://www.jxzbtb.cn/inteligentsearch/rest/inteligentSearch/getFullTextData'
+
 FIRE_TIME1 = "10:30"
-FIRE_TIME2 = "16:35"
+FIRE_TIME2 = "17:57"

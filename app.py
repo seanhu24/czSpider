@@ -88,7 +88,7 @@ def parse_one_page(html):
         if 'articles' in data.keys():
             for article in data.get('articles'):
                 yield {
-                    'id': int(article.get('id')),
+                    'id': str(article.get('id')),
                     'mainBidMenuName': article.get('mainBidMenuName'),
                     'title': re.sub(r'<[^>]+>', "", article.get('title'), re.S),
                     'projectCode': article.get('projectCode'),
@@ -116,7 +116,7 @@ def parse_one_notice(html):
         data = json.loads(html)
         if 'noticeContent' in data.keys():
             yield {
-                'id': data.get('id'),
+                'id': str(data.get('id')),
                 'noticeTitle': data.get('noticeTitle'),
                 'noticePubDate': data.get('noticePubDate'),
                 'noticeContent': tidy_notice_content(data.get('noticeContent')),
@@ -180,8 +180,8 @@ def zjs():
 
     # print(notices[0])
     for nts in notices:
-        id = nts.get('id')
-        logger.info('处理通告:' + str(id))
+        id = str(nts.get('id'))
+        logger.info('处理通告:' + id)
         if check_id_mongo({'id': id}):
             logger.info('已存在通告:' + str(id))
             # continue
@@ -222,3 +222,5 @@ while True:
 
 if __name__ == "__main__":
     main()
+
+

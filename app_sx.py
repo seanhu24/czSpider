@@ -152,7 +152,7 @@ def sxbj_zb():
             continue
 
         # 检查是否存在重复的通告
-        if check_id_mongo(a_item):
+        if check_dup_record(a_item):
             logger.info('%s:%s已存在数据库中，忽略...' %
                         (a_item.get('id'), a_item.get('title')))
             continue
@@ -232,7 +232,7 @@ def sxbj_zb2():
             continue
 
         # 检查是否存在重复的通告
-        if check_id_mongo(a_item):
+        if check_dup_record(a_item):
             logger.info('%s:%s已存在数据库中，忽略...' %
                         (a_item.get('id'), a_item.get('title')))
             continue

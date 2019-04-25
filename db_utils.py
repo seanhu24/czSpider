@@ -36,6 +36,15 @@ def check_id_mongo(a_set):
     return False
 
 
+def check_dup_record(a_set):
+    if db[MONGO_TABLE].find_one({'$and': [
+        {'title': a_set.get('title')},
+            {'source': {'$ne': a_set.get('source')}}]}):
+        return True
+    else:
+        return False
+
+
 def save_mongo_to_csv(tbname, filename):
     d = db[MONGO_TABLE].find_one({}, {'_id': False})
     print(d)
@@ -45,5 +54,8 @@ if __name__ == "__main__":
     # print(check_id_mongo({'id': '10247'}))
     # print(save_to_mongo({'id': 1, 'name': 'asdfa'}))
     # print(upsert_to_mongo({'id': 1}, {'name': 'aaa', 'age': 22}))
-    print(list(get_from_mongo(
-        {'id': '26abf388-1f73-4aff-8055-8ea0bf6d5f21'})))
+    # print(list(get_from_mongo(
+    #     {'id': '26abf388-1f73-4aff-8055-8ea0bf6d5f21'})))
+
+    print(check_dup_record(
+        {'title': '2018年（第四期）嘉兴市本级公共资金竞争性存放项目', 'source': '嘉兴市公共资源交'}))
