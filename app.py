@@ -15,6 +15,7 @@ from math import ceil
 from config import *
 from db_utils import *
 from app_sx import *
+from app_jx import *
 from request_utils import *
 
 
@@ -142,6 +143,8 @@ def main():
     sxbj_zb()
     # 绍兴本级中标
     sxbj_zb2()
+    # 嘉兴
+    jxbj()
 
 
 def zjs():
@@ -222,5 +225,3 @@ while True:
 
 if __name__ == "__main__":
     main()
-
-
