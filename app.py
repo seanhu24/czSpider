@@ -16,6 +16,7 @@ from config import *
 from db_utils import *
 from app_sx import *
 from app_jx import *
+from app_hz import *
 from request_utils import *
 
 
@@ -139,12 +140,15 @@ def tidy_notice_content(text):
 def main():
     # 浙江省本级
     zjs()
-    # 绍兴本级招标
-    sxbj_zb()
-    # 绍兴本级中标
-    sxbj_zb2()
+    # # 绍兴本级招标
+    # sxbj_zb()
+    # # 绍兴本级中标
+    # sxbj_zb2()
+    sxbj_zb_v2()
     # 嘉兴
     jxbj()
+    # 湖州
+    hz_zb()
 
 
 def zjs():

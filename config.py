@@ -19,9 +19,31 @@ SX_MAIN_ZB_LINK = 'http://www.sxztb.gov.cn:33660/sxweb/fzxjy/007001/MoreInfo.asp
 SX_MAIN_ZB2_LINK = 'http://www.sxztb.gov.cn:33660/sxweb/fzxjy/007002/MoreInfo.aspx?CategoryNum=007002'
 
 
+SX_MAIN_SEARCH_LINK = [('http://ggb.sx.gov.cn/col/col1518878/index.html',
+                        '招标（交易）公告', 1518878),  # 非中心交易（公告代发）项目	> 招标（交易）公告
+                       ('http://ggb.sx.gov.cn/col/col1518879/index.html',
+                        '中标公示', 1518879),  # 非中心交易（公告代发）项目	> 中标公示
+                       ('http://ggb.sx.gov.cn/col/col1518859/index.html',
+                        '采购要素公示', 1518859),  # 政府采购	> 采购要素公示
+                       ('http://ggb.sx.gov.cn/col/col1518860/index.html',
+                        '采购公告', 1518860),  # 政府采购	> 采购公告
+                       ('http://ggb.sx.gov.cn/col/col1518861/index.html',
+                        '中标（成交）公告', 1518861),  # 政府采购	> 中标（成交）公告
+                       ('http://ggb.sx.gov.cn/col/col1518862/index.html',
+                        '终止（废标）公告', 1518862)]  # 政府采购	> 终止（废标）公告
+
+SX_MAIN_DATA_PROXY = 'http://ggb.sx.gov.cn/module/jpage/dataproxy.jsp'
+
+
 # 嘉兴市公共资源交易中心
 JX_GGZY_MAIN_LINK = 'http://www.jxzbtb.cn'
 JX_GGZY_SEARCH_LINK = 'http://www.jxzbtb.cn/inteligentsearch/rest/inteligentSearch/getFullTextData'
+
+# 湖州公共资源交易中心
+
+HZ_MAIN_SEARCH_LINK = [('http://ggzy.huzhou.gov.cn/HZfront/zfcg/024001/024001001/', ' 集中采购招标公告'),  # 政府采购 > 集中采购 > 集中采购招标公告
+                       ('http://ggzy.huzhou.gov.cn/HZfront/zfcg/024001/024001002/', '集中采购中标公示')]  # 政府采购 > 集中采购 > 集中采购中标公示
+
 
 FIRE_TIME1 = "10:30"
 FIRE_TIME2 = "17:57"

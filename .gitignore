@@ -109,3 +109,8 @@ Pipfile.lock
 test.py
 attachments/*
 clean_data.py
+test_jx.py
+test5.py
+test_html.html
+test_sx.py
+phantomjs.exe

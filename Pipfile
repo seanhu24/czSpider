@@ -8,6 +8,8 @@ requests = "*"
 "beautifulsoup4" = "*"
 pymongo = "*"
 schedule = "*"
+lxml = "*"
+selenium = "*"
 
 [dev-packages]
 pylint = "*"

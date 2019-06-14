@@ -57,5 +57,10 @@ if __name__ == "__main__":
     # print(list(get_from_mongo(
     #     {'id': '26abf388-1f73-4aff-8055-8ea0bf6d5f21'})))
 
-    print(check_dup_record(
-        {'title': '2018年（第四期）嘉兴市本级公共资金竞争性存放项目', 'source': '嘉兴市公共资源交'}))
+    # print(check_dup_record(
+    #     {'title': '2018年（第四期）嘉兴市本级公共资金竞争性存放项目', 'source': '嘉兴市公共资源交'}))
+
+    a = {'id': '10247'}
+    # b = check_id_mongo(a)
+    b = get_from_mongo(a)
+    print(b)
