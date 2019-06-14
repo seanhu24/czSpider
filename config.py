@@ -46,4 +46,4 @@ HZ_MAIN_SEARCH_LINK = [('http://ggzy.huzhou.gov.cn/HZfront/zfcg/024001/024001001
 
 
 FIRE_TIME1 = "10:30"
-FIRE_TIME2 = "17:57"
+FIRE_TIME2 = "16:57"

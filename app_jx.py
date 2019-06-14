@@ -101,7 +101,7 @@ def jxbj():
         districtName = '嘉兴市本级'
         keywords = a_item.get('content')
         noticePubDate = a_item.get('infodate')
-        url = JX_GGZY_MAIN_LINK + '/' + a_item.get('linkurl')
+        url = JX_GGZY_MAIN_LINK + a_item.get('linkurl')
 
         if '招标' in title:
             typeName = '招标公告'
@@ -128,7 +128,11 @@ def jxbj():
         # print(url)
 
         logger.info('处理通告%s' % notice.get('id'))
+        # print(url)
         noticeContent_html = get_one_url(url)
+        if not noticeContent_html:
+            logger('{} 不能访问'.format(url))
+            continue
         bs = BeautifulSoup(noticeContent_html, 'lxml')
         notice['noticeTitle'] = bs.find(class_='infoContentTitle').get_text()
         # print(notice['noticeTitle'])
