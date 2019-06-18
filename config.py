@@ -42,7 +42,15 @@ JX_GGZY_SEARCH_LINK = 'http://www.jxzbtb.cn/inteligentsearch/rest/inteligentSear
 # 湖州公共资源交易中心
 
 HZ_MAIN_SEARCH_LINK = [('http://ggzy.huzhou.gov.cn/HZfront/zfcg/024001/024001001/', ' 集中采购招标公告'),  # 政府采购 > 集中采购 > 集中采购招标公告
-                       ('http://ggzy.huzhou.gov.cn/HZfront/zfcg/024001/024001002/', '集中采购中标公示')]  # 政府采购 > 集中采购 > 集中采购中标公示
+                       # 政府采购 > 集中采购 > 集中采购中标公示
+                       ('http://ggzy.huzhou.gov.cn/HZfront/zfcg/024001/024001002/', '集中采购中标公示'),
+                       # 政府采购 > 分散采购 > 分散采购招标公告
+                       ('http://ggzy.huzhou.gov.cn/HZfront/zfcg/024002/024002001/', '分散采购招标公告'),
+                       # 政府采购 > 分散采购 > 分散采购中标公示
+                       ('http://ggzy.huzhou.gov.cn/HZfront/zfcg/024002/024002002/', '分散采购中标公示')
+
+
+                       ]
 
 
 FIRE_TIME1 = "10:30"

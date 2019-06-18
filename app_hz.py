@@ -109,14 +109,19 @@ def hz_zb():
         ref_link = search_link
         for Paging in range(1, total_page_no + 1):
             full_url = search_link + '?Paging=' + str(Paging)
-            # print(full_url)
+            # logger.info(full_url)
             logger.info('获取第 {} 页'.format(Paging))
             headers['Referer'] = ref_link
             index_html = get_one_url_with_header(full_url, headers=headers)
             links = get_links(index_html)
+            # for l in links:
+            #     logger.info(l.get('title'))
             all_links.extend(links)
 
     cleaned_links = filter_by_keyword(all_links)
+
+    # for l in all_links:
+    #     logger.info(l.get('title'))
 
     for l in cleaned_links:
         if check_dup_record(l):
@@ -134,7 +139,7 @@ def hz_zb():
         l['typeName'] = tpname
         l['districtName'] = '湖州市本级'
 
-        print(l)
+        # print(l)
         if upsert_to_mongo({'id': l.get('id')}, l):
             logger.info('更新/插入[%s]成功' % l.get('id'))
     logger.info('结束处理湖州公共资源交易网')

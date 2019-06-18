@@ -131,7 +131,7 @@ def jxbj():
         # print(url)
         noticeContent_html = get_one_url(url)
         if not noticeContent_html:
-            logger('{} 不能访问'.format(url))
+            logger.info('{} 不能访问'.format(url))
             continue
         bs = BeautifulSoup(noticeContent_html, 'lxml')
         notice['noticeTitle'] = bs.find(class_='infoContentTitle').get_text()
