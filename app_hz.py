@@ -38,16 +38,6 @@ def parse_hz_notice(html=None):
             'keywords': keywords}
 
 
-def get_page_num(html=None):
-    bs = BeautifulSoup(html, 'lxml')
-    pg = bs.find('td', class_='huifont')
-    # print(pg.get_text())
-    # print(pg.get_text().split('/'))
-    if pg:
-        return pg.get_text().split('/')[1]
-    return None
-
-
 def get_links(html=None):
     ret_links = []
     bs = BeautifulSoup(html, 'lxml')
@@ -114,11 +104,16 @@ def hz_zb():
             headers['Referer'] = ref_link
             index_html = get_one_url_with_header(full_url, headers=headers)
             links = get_links(index_html)
+
+            logger.info('获得数据 {} 条'.format(len(links)))
+
             # for l in links:
             #     logger.info(l.get('title'))
             all_links.extend(links)
 
     cleaned_links = filter_by_keyword(all_links)
+
+    logger.info('获得不重复数据 {} 条'.format(len(cleaned_links)))
 
     # for l in all_links:
     #     logger.info(l.get('title'))

@@ -1,5 +1,6 @@
 from config import *
 import re
+from bs4 import BeautifulSoup
 
 
 def filter_by_keyword(links=None):
@@ -18,6 +19,19 @@ def remove_header_comment(instr=None):
     s1 = re.sub(r'/\*.*\*/', '', instr)
     s2 = re.sub(r'.*;}', '', s1).strip()
     return s2
+
+
+def get_page_num(html=None):
+    '''
+        湖州丽水公用提取页面数
+    '''
+    bs = BeautifulSoup(html, 'lxml')
+    pg = bs.find('td', class_='huifont')
+    # print(pg.get_text())
+    # print(pg.get_text().split('/'))
+    if pg:
+        return pg.get_text().split('/')[1]
+    return None
 
 
 if __name__ == "__main__":

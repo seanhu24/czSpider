@@ -17,6 +17,7 @@ from db_utils import *
 from app_sx import *
 from app_jx import *
 from app_hz import *
+from app_ls import *
 from request_utils import *
 
 
@@ -149,6 +150,8 @@ def main():
     jxbj()
     # 湖州
     hz_zb()
+    # 丽水
+    zb_ls()
 
 
 def zjs():

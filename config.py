@@ -48,10 +48,43 @@ HZ_MAIN_SEARCH_LINK = [('http://ggzy.huzhou.gov.cn/HZfront/zfcg/024001/024001001
                        ('http://ggzy.huzhou.gov.cn/HZfront/zfcg/024002/024002001/', '分散采购招标公告'),
                        # 政府采购 > 分散采购 > 分散采购中标公示
                        ('http://ggzy.huzhou.gov.cn/HZfront/zfcg/024002/024002002/', '分散采购中标公示')
-
-
                        ]
 
+# 丽水市公共资源交易网
+LS_MAIN_SEARCH_LINK = [
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005001/071005001001/', '丽水市本级', '交易公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005001/071005001002/', '莲都', '交易公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005001/071005001003/', '龙泉', '交易公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005001/071005001004/', '青田', '交易公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005001/071005001005/', '云和', '交易公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005001/071005001006/', '庆元', '交易公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005001/071005001007/', '缙云', '交易公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005001/071005001008/', '遂昌', '交易公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005001/071005001009/', '松阳', '交易公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005001/071005001010/', '景宁', '交易公告'),
+
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005002/071005002001/', '丽水市本级', '补充通知'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005002/071005002002/', '莲都', '补充通知'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005002/071005002003/', '龙泉', '补充通知'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005002/071005002004/', '青田', '补充通知'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005002/071005002005/', '云和', '补充通知'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005002/071005002006/', '庆元', '补充通知'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005002/071005002007/', '缙云', '补充通知'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005002/071005002008/', '遂昌', '补充通知'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005002/071005002009/', '松阳', '补充通知'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005002/071005002010/', '景宁', '补充通知'),
+
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005003/071005003001/', '丽水市本级', '成交公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005003/071005003002/', '莲都', '成交公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005003/071005003003/', '龙泉', '成交公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005003/071005003004/', '青田', '成交公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005003/071005003005/', '云和', '成交公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005003/071005003006/', '庆元', '成交公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005003/071005003007/', '缙云', '成交公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005003/071005003008/', '遂昌', '成交公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005003/071005003009/', '松阳', '成交公告'),
+    ('http://www.lssggzy.com/lsweb/jyxx/071005/071005003/071005003010/', '景宁', '成交公告')
+]
 
 FIRE_TIME1 = "10:30"
 FIRE_TIME2 = "16:57"
