@@ -34,8 +34,12 @@ def parse_ls_notice(html=None):
     noticeTitle = bs.find(
         'td', class_='s-mid-content-title').get_text().strip()
 
-    noticePubDate_t = bs.find(
-        'p', class_='s-mid-content-date').get_text().strip().split('：')[1].strip()
+    try:
+        noticePubDate_t = bs.find(
+            'p', class_='s-mid-content-date').get_text().strip().split('：')[1].strip()
+    except IndexError as e:
+        logger.error('获取内容失败', e)
+        return None
     noticePubDate = datetime.strptime(
         noticePubDate_t, '%Y/%m/%d').strftime('%Y-%m-%d')
 
@@ -130,13 +134,13 @@ def zb_ls():
         # print(l.get('url'))
         notice_html = get_one_url_gbk(l.get('url'))
         notice_dict = parse_ls_notice(notice_html)
+        if notice_dict:
+            l.update(notice_dict)
+            l['source'] = '丽水市公共资源交易网'
 
-        l.update(notice_dict)
-        l['source'] = '丽水市公共资源交易网'
-
-        # # print(l)
-        if upsert_to_mongo({'id': l.get('id')}, l):
-            logger.info('更新/插入[%s]成功' % l.get('id'))
+            # # print(l)
+            if upsert_to_mongo({'id': l.get('id')}, l):
+                logger.info('更新/插入[%s]成功' % l.get('id'))
 
     logger.info('结束处理丽水市公共资源交易网')
 
