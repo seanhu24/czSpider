@@ -101,7 +101,7 @@ def parse_sx_notice_v2(html, tpname):
     noticeTitle = bs.find('td', class_='title').get_text().strip()
 
     noticeContent_html = str(bs.find('td', class_='bt_content'))
-    noticeContent = noticeContent_html.get_text()
+    noticeContent = bs.find('td', class_='bt_content').get_text()
     return {'noticeTitle': noticeTitle,
             # 'source': source,
             'typeName': tpname,
