@@ -18,6 +18,7 @@ from app_sx import *
 from app_jx import *
 from app_hz import *
 from app_ls import *
+import app_zj
 from request_utils import *
 
 
@@ -140,7 +141,9 @@ def tidy_notice_content(text):
 
 def main():
     # 浙江省本级
-    zjs()
+    # zjs()
+    zjs = app_zj.zjs()
+    zjs.main()
     # # 绍兴本级招标
     # sxbj_zb()
     # # 绍兴本级中标
