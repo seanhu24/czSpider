@@ -3,6 +3,26 @@ import re
 from bs4 import BeautifulSoup
 
 
+def get_uniq_notice(notices=None):
+    id_list = []
+    new_notices = []
+    for n in notices:
+        if n.get('id') not in id_list:
+            id_list.append(n.get('id'))
+            new_notices.append(n)
+    return new_notices
+
+
+def tidy_notice_content(text):
+    cleanr = re.compile('<(.*?)>', re.S)
+    d1 = re.sub(cleanr, '', text)
+    d2 = re.sub('&nbsp;', ' ', d1)
+    cleanr2 = re.compile('^(table|th)(.*?);}', re.S)
+    d3 = re.sub(cleanr2, '', d2)
+
+    return ''.join(d3.splitlines())
+
+
 def filter_by_keyword(links=None):
     back = []
     for l in links:

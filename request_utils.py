@@ -25,7 +25,7 @@ logger = logging.getLogger('sLogger')
 
 
 def get_one_url(url):
-    # logger.info('爬取url:' + url)
+    logger.info('爬取url:' + url)
     retry = 3
     success = False
     while not success:
