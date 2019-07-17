@@ -19,6 +19,7 @@ from app_jx import *
 from app_hz import *
 from app_ls import *
 import app_zj
+import app_zjcg
 from request_utils import *
 
 
@@ -144,6 +145,10 @@ def main():
     # zjs()
     zjs = app_zj.zjs()
     zjs.main()
+
+    # 浙江采购网
+    zjcg = app_zjcg.zjcg()
+    zjcg.main()
     # # 绍兴本级招标
     # sxbj_zb()
     # # 绍兴本级中标

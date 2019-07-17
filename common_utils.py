@@ -19,8 +19,9 @@ def tidy_notice_content(text):
     d2 = re.sub('&nbsp;', ' ', d1)
     cleanr2 = re.compile('^(table|th)(.*?);}', re.S)
     d3 = re.sub(cleanr2, '', d2)
+    d4 = d3.replace(u'\u200b', '')
 
-    return ''.join(d3.splitlines())
+    return ''.join(d4.splitlines())
 
 
 def filter_by_keyword(links=None):
