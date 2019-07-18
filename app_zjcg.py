@@ -163,10 +163,10 @@ class zjcg():
             notice['noticeContent_html'] = notice_html
 
         # 检查标题黑名单,并存入数据库
-        for notice in full_notices_uniq:
-            # logger.info(notice)
-            title = notice.get('title')
-            id = notice.get('id')
+        # for notice in full_notices_uniq:
+        #     # logger.info(notice)
+        #     title = notice.get('title')
+        #     id = notice.get('id')
             for kw in BLACK_LIST:
                 if kw in title:
                     logger.info('{} {} 检查到黑名单关键字 {}, 忽略'.format(id, title, kw))
@@ -207,7 +207,6 @@ class zjcg():
         #     'keyword': '存款',
         #     'url': 'http://notice.zcygov.cn/new/noticeSearch'
         # }
-
 
         # full_url = self.search_path + urlencode(para)
         # logger.info(full_url)

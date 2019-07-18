@@ -29,9 +29,11 @@ def upsert_to_mongo(where, a_set):
 
 
 def check_id_mongo(a_set):
-    if db[MONGO_TABLE].find_one({'id': a_set.get('id')}):
+    r = db[MONGO_TABLE].find_one({'id': a_set.get('id')})
+    if r:
         return True
-    if db[MONGO_TABLE].find_one({'title': a_set.get('title')}):
+    r = db[MONGO_TABLE].find_one({'title': a_set.get('title')})
+    if r:
         return True
     return False
 
