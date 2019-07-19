@@ -167,14 +167,26 @@ class zjcg():
         #     # logger.info(notice)
         #     title = notice.get('title')
         #     id = notice.get('id')
-            for kw in BLACK_LIST:
-                if kw in title:
-                    logger.info('{} {} 检查到黑名单关键字 {}, 忽略'.format(id, title, kw))
-                    continue
-            logger.info('开始插入 {} {}'.format(id, title))
-            notice['source'] = self.source
-            if upsert_to_mongo({'id': id}, notice):
-                logger.info('插入 {} {} 成功'.format(id, title))
+
+            if check_title_black_list(title=title):
+                logger.info('{} {} 检查到黑名单关键字 {}, 忽略'.format(id, title, kw))
+                continue
+            else:
+                logger.info('开始插入 {} {}'.format(id, title))
+                notice['source'] = self.source
+                if upsert_to_mongo({'id': id}, notice):
+                    logger.info('插入 {} {} 成功'.format(id, title))
+
+            # for kw in BLACK_LIST:
+            #     if kw in title:
+            #         logger.info('{} {} 检查到黑名单关键字 {}, 忽略'.format(id, title, kw))
+            #         break
+            #     else:
+            #         logger.info('开始插入 {} {}'.format(id, title))
+            #         notice['source'] = self.source
+            #         if upsert_to_mongo({'id': id}, notice):
+            #             logger.info('插入 {} {} 成功'.format(id, title))
+            #         break
 
         self.logger.info('浙江省采购网结束...')
 
