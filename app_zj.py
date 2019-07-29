@@ -11,6 +11,7 @@ from bs4 import BeautifulSoup
 import re
 from db_utils import *
 from request_utils import *
+from mail_utils import *
 
 
 class zjs():
@@ -18,7 +19,7 @@ class zjs():
         fileConfig('logging_config.ini')
         self.domain = 'http://zjpubservice.zjzwfw.gov.cn'
         self.logger = logging.getLogger('app_zj')
-        self.logger.info('浙江省级开始...')
+        self.logger.info('浙江省公共资源交易服务平台开始...')
 
         self.zj_session = requests.session()
         self.header = {
@@ -177,6 +178,8 @@ class zjs():
                 self.logger.info(
                     '更新/插入 {} {} 成功'.format(id, title))
 
+        return i - 1
+
     def get_new_notices(self, notices=None):
         new_nts = []
         for nt in notices:
@@ -254,8 +257,10 @@ class zjs():
             nt['url'] = nt['link']
 
         self.logger.info('开始存放...')
-        self.store_notice(notices=new_uniq_notices)
-        self.logger.info('浙江省级结束...')
+        new_ct = self.store_notice(notices=new_uniq_notices)
+        send_email(receiver=['huxiao_hz@citicbank.com', '16396355@qq.com'],
+                   title='浙江省公共资源交易服务平台发送情况', cont='<h1>今日浙江省公共资源交易服务平台采购网新增信息 {} 条</h1>'.format(new_ct))
+        self.logger.info('浙江省公共资源交易服务平台结束...')
 
     def test1(self):
         wd = '存款'

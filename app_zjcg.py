@@ -13,6 +13,7 @@ from db_utils import *
 from request_utils import *
 from math import ceil
 import datetime
+from mail_utils import *
 
 
 class zjcg():
@@ -140,6 +141,7 @@ class zjcg():
 
         # 逐个处理， 提取时间和内容, 去除标记， noticeContent,noticeContent_html,noticePubDate,noticeTitle
         # 按照标题判断是否入库
+        ct = 0
         for notice in full_notices_uniq:
             id = notice.get('id')
             title = tidy_notice_content(notice.get('title'))
@@ -163,12 +165,6 @@ class zjcg():
             notice['noticeContent'] = bs.get_text()
             notice['noticeContent_html'] = notice_html
 
-        # 检查标题黑名单,并存入数据库
-        # for notice in full_notices_uniq:
-        #     # self.logger.info(notice)
-        #     title = notice.get('title')
-        #     id = notice.get('id')
-
             if check_title_black_list(title=title):
                 self.logger.info(
                     '{} {} 检查到黑名单关键字 {}, 忽略'.format(id, title, kw))
@@ -178,18 +174,9 @@ class zjcg():
                 notice['source'] = self.source
                 if upsert_to_mongo({'id': id}, notice):
                     self.logger.info('插入 {} {} 成功'.format(id, title))
-
-            # for kw in BLACK_LIST:
-            #     if kw in title:
-            #         logger.info('{} {} 检查到黑名单关键字 {}, 忽略'.format(id, title, kw))
-            #         break
-            #     else:
-            #         logger.info('开始插入 {} {}'.format(id, title))
-            #         notice['source'] = self.source
-            #         if upsert_to_mongo({'id': id}, notice):
-            #             logger.info('插入 {} {} 成功'.format(id, title))
-            #         break
-
+                    ct += 1
+        send_email(receiver=['huxiao_hz@citicbank.com', '16396355@qq.com'],
+                   title='浙江省采购网发送情况', cont='<h1>今日浙江省采购网新增信息 {} 条</h1>'.format(ct))
         self.logger.info('浙江省采购网结束...')
 
     def test(self):
@@ -221,7 +208,6 @@ class zjcg():
         #     'keyword': '存款',
         #     'url': 'http://notice.zcygov.cn/new/noticeSearch'
         # }
-
 
         # full_url = self.search_path + urlencode(para)
         # logger.info(full_url)
