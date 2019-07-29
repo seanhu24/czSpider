@@ -21,7 +21,7 @@ class zjcg():
         fileConfig('logging_config.ini')
         self.domain = 'http://www.zjzfcg.gov.cn/'
         self.search_path = 'http://manager.zjzfcg.gov.cn/cms/api/cors/getRemoteResults?'
-        self.logger = logging.getLogger('zjcg_logger')
+        self.logger = logging.getLogger('app_zjcg')
         self.logger.info('浙江省采购网开始...')
 
         self.zj_session = requests.session()
@@ -116,26 +116,27 @@ class zjcg():
         full_notices_uniq = []
         # 关键字
         for kw in self.kws:
-            logger.info('查询 {}'.format(kw))
+            self.logger.info('查询 {}'.format(kw))
             ret = self.get_a_index(kw=kw, pageNo=1)
             # 获取记录数
             realCount = ret.get('realCount')
-            logger.info('获得记录数 {}'.format(realCount))
+            self.logger.info('获得记录数 {}'.format(realCount))
             if realCount == 0:
-                logger.info('0条记录，跳过')
+                self.logger.info('0条记录，跳过')
                 continue
             pg = ceil(realCount / 15)
             for pageNo in range(1, pg + 1):
-                # logger.info('第 {} 页'.format(pageNo))
+                # self.logger.info('第 {} 页'.format(pageNo))
                 ret = self.get_a_index(kw=kw, pageNo=pageNo)
                 articles = ret.get('articles')
-                logger.info('第 {} 页,有记录 {} 条'.format(pageNo, len(articles)))
+                self.logger.info(
+                    '第 {} 页,有记录 {} 条'.format(pageNo, len(articles)))
                 full_notices.extend(articles)
-        logger.info('共获取记录 {} 条'.format(len(full_notices)))
+        self.logger.info('共获取记录 {} 条'.format(len(full_notices)))
 
         # 去除重复记录
         full_notices_uniq = self.get_uniq_notice(notices=full_notices)
-        logger.info('得到不重复记录 {} 条'.format(len(full_notices_uniq)))
+        self.logger.info('得到不重复记录 {} 条'.format(len(full_notices_uniq)))
 
         # 逐个处理， 提取时间和内容, 去除标记， noticeContent,noticeContent_html,noticePubDate,noticeTitle
         # 按照标题判断是否入库
@@ -146,15 +147,15 @@ class zjcg():
             url = notice.get('url')
             keywords = tidy_notice_content(notice.get('keywords'))
             notice['keywords'] = keywords
-            logger.info('处理 {} {} {}'.format(id, title, url))
+            self.logger.info('处理 {} {} {}'.format(id, title, url))
             if check_id_mongo(notice):
-                logger.info('已存在通告: {} 忽略'.format(id))
+                self.logger.info('已存在通告: {} 忽略'.format(id))
                 continue
 
-            logger.info('获取通告: {} 详细信息'.format(id))
+            self.logger.info('获取通告: {} 详细信息'.format(id))
 
             notice_detail = self.get_a_detail(noticeId=id)
-            # logger.info(notice_detail)
+            # self.logger.info(notice_detail)
             notice['noticePubDate'] = notice_detail.get('noticePubDate')[:10]
             notice['noticeTitle'] = notice_detail.get('noticeTitle')
             notice_html = notice_detail.get('noticeContent')
@@ -164,18 +165,19 @@ class zjcg():
 
         # 检查标题黑名单,并存入数据库
         # for notice in full_notices_uniq:
-        #     # logger.info(notice)
+        #     # self.logger.info(notice)
         #     title = notice.get('title')
         #     id = notice.get('id')
 
             if check_title_black_list(title=title):
-                logger.info('{} {} 检查到黑名单关键字 {}, 忽略'.format(id, title, kw))
+                self.logger.info(
+                    '{} {} 检查到黑名单关键字 {}, 忽略'.format(id, title, kw))
                 continue
             else:
-                logger.info('开始插入 {} {}'.format(id, title))
+                self.logger.info('开始插入 {} {}'.format(id, title))
                 notice['source'] = self.source
                 if upsert_to_mongo({'id': id}, notice):
-                    logger.info('插入 {} {} 成功'.format(id, title))
+                    self.logger.info('插入 {} {} 成功'.format(id, title))
 
             # for kw in BLACK_LIST:
             #     if kw in title:
@@ -219,6 +221,7 @@ class zjcg():
         #     'keyword': '存款',
         #     'url': 'http://notice.zcygov.cn/new/noticeSearch'
         # }
+
 
         # full_url = self.search_path + urlencode(para)
         # logger.info(full_url)

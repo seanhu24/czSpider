@@ -15,10 +15,9 @@ from request_utils import *
 
 class zjs():
     def __init__(self):
-
         fileConfig('logging_config.ini')
         self.domain = 'http://zjpubservice.zjzwfw.gov.cn'
-        self.logger = logging.getLogger('sLogger')
+        self.logger = logging.getLogger('app_zj')
         self.logger.info('浙江省级开始...')
 
         self.zj_session = requests.session()
@@ -175,7 +174,7 @@ class zjs():
             self.logger.info('开始更新/插入 {}/{} {} {}'.format(i, ct, id, title))
             i += 1
             if upsert_to_mongo({'id': id}, nt):
-                logger.info(
+                self.logger.info(
                     '更新/插入 {} {} 成功'.format(id, title))
 
     def get_new_notices(self, notices=None):
@@ -266,6 +265,7 @@ class zjs():
 
 
 if __name__ == "__main__":
+
     zjs = zjs()
     # zjs.test1()
     zjs.main()

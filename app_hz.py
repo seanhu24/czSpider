@@ -21,7 +21,7 @@ from request_utils import *
 from common_utils import *
 
 fileConfig('logging_config.ini')
-logger = logging.getLogger('sLogger')
+logger = logging.getLogger('app_hz')
 
 
 def parse_hz_notice(html=None):

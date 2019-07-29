@@ -22,7 +22,7 @@ from common_utils import *
 
 
 fileConfig('logging_config.ini')
-logger = logging.getLogger('sLogger')
+logger = logging.getLogger('app_sx')
 
 
 DOMAIN_URL = 'http://ggb.sx.gov.cn'

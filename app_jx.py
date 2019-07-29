@@ -20,6 +20,10 @@ from db_utils import *
 from request_utils import *
 
 
+fileConfig('logging_config.ini')
+logger = logging.getLogger('app_jx')
+
+
 def jxbj():
     # 从查询页面开始
     search_url = JX_GGZY_SEARCH_LINK

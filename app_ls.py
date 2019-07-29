@@ -23,7 +23,7 @@ from common_utils import *
 
 
 fileConfig('logging_config.ini')
-logger = logging.getLogger('sLogger')
+logger = logging.getLogger('app_ls')
 
 
 DOMAIN = 'http://www.lssggzy.com'

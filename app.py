@@ -149,6 +149,7 @@ def main():
     # 浙江采购网
     zjcg = app_zjcg.zjcg()
     zjcg.main()
+
     # # 绍兴本级招标
     # sxbj_zb()
     # # 绍兴本级中标
@@ -230,13 +231,13 @@ def zjs():
                 logger.info('更新/插入[%s]成功' % full_notice.get('id'))
 
 
-schedule.every().day.at(FIRE_TIME1).do(main)
-schedule.every().day.at(FIRE_TIME2).do(main)
+# schedule.every().day.at(FIRE_TIME1).do(main)
+# schedule.every().day.at(FIRE_TIME2).do(main)
 
-while True:
-    schedule.run_pending()
-    # logger.info('tick tack...')
-    time.sleep(1)
+# while True:
+#     schedule.run_pending()
+#     # logger.info('tick tack...')
+#     time.sleep(1)
 
 if __name__ == "__main__":
     main()
