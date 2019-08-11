@@ -77,8 +77,11 @@ class zjcg():
         full_url = self.search_path + urlencode(para)
 
         res = self.do_get(url=full_url)
-        res_json = json.loads(res)
-
+        try:
+            res_json = json.loads(res)
+        except Exception as e:
+            self.logger.error('cannot get index for {}'.format(full_url))
+            res_json = None
         return res_json
 
     def get_a_detail(self, noticeId=None):
@@ -120,7 +123,7 @@ class zjcg():
             self.logger.info('查询 {}'.format(kw))
             ret = self.get_a_index(kw=kw, pageNo=1)
             # 获取记录数
-            realCount = ret.get('realCount')
+            realCount = ret.get('count')
             self.logger.info('获得记录数 {}'.format(realCount))
             if realCount == 0:
                 self.logger.info('0条记录，跳过')
@@ -129,7 +132,11 @@ class zjcg():
             for pageNo in range(1, pg + 1):
                 # self.logger.info('第 {} 页'.format(pageNo))
                 ret = self.get_a_index(kw=kw, pageNo=pageNo)
-                articles = ret.get('articles')
+                if ret:
+                    articles = ret.get('articles')
+                else:
+                    self.logger.error('can not get index, skipping...')
+                    continue
                 self.logger.info(
                     '第 {} 页,有记录 {} 条'.format(pageNo, len(articles)))
                 full_notices.extend(articles)
@@ -208,6 +215,7 @@ class zjcg():
         #     'keyword': '存款',
         #     'url': 'http://notice.zcygov.cn/new/noticeSearch'
         # }
+
 
         # full_url = self.search_path + urlencode(para)
         # logger.info(full_url)
