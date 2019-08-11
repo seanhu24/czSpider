@@ -3,6 +3,13 @@ import re
 from bs4 import BeautifulSoup
 
 
+def write_to_file(fn=None, data=None):
+    with open(fn, 'w', encoding='utf8') as f:
+        for d in data:
+            f.write(d)
+            f.write('\n')
+
+
 def check_title_black_list(title=None):
     for kw in BLACK_LIST:
         if kw in title:
@@ -71,6 +78,11 @@ def get_page_num(html=None):
 
 if __name__ == "__main__":
 
-    ins = "海宁市海洲街道福采购合同公告"
-    r = check_title_black_list(ins)
-    print(r)
+    # ins = "海宁市海洲街道福采购合同公告"
+    # r = check_title_black_list(ins)
+    # print(r)
+
+    s = '青溪小学基础网络建设采购项目公示'
+    print(s)
+    rt = check_title_kw_list(title=s)
+    print(rt)

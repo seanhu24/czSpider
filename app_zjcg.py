@@ -143,15 +143,38 @@ class zjcg():
         self.logger.info('共获取记录 {} 条'.format(len(full_notices)))
 
         # 去除重复记录
-        full_notices_uniq = self.get_uniq_notice(notices=full_notices)
+        full_notices_uniq_tmp = self.get_uniq_notice(notices=full_notices)
+
+        self.logger.info('得到不重复记录 {} 条'.format(len(full_notices_uniq_tmp)))
+
+        # write_to_file('uniq1.txt', [d.get('id') + ' ' + d.get('title')
+        #                             for d in full_notices_uniq_tmp])
 
         # 网站的查询功能失效了，只能人工再次过滤
-        for notic in full_notices_uniq:
-            if not check_title_kw_list(title=notic.get('title')):
-                full_notices_uniq.remove(notic)
-                # self.logger.info('{} {} 不包含关键字, 忽略'.format(
-                #     notic.get('id'), notic.get('title')))
-        self.logger.info('得到不重复记录 {} 条'.format(len(full_notices_uniq)))
+
+        for notic in full_notices_uniq_tmp:
+            # 标题中有关键字<em>和</em>
+            # if not check_title_kw_list(title=tidy_notice_content(notic.get('title'))):
+            #     full_notices_uniq.remove(notic)
+            #     self.logger.info('{} {} 不包含关键字, 忽略'.format(
+            #         notic.get('id'), tidy_notice_content(notic.get('title'))))
+            # else:
+            #     self.logger.info('{} {} 包含关键字'.format(
+            #         notic.get('id'), tidy_notice_content(notic.get('title'))))
+            title = tidy_notice_content(notic.get('title'))
+            if check_title_kw_list(title=title):
+                full_notices_uniq.append(notic)
+
+        self.logger.info('关键字过滤后得到 {} 条'.format(len(full_notices_uniq)))
+
+        # write_to_file(
+        #     'uniq2.txt', [d.get('id') + ' ' + d.get('title') for d in full_notices_uniq])
+
+        # for n in full_notices_uniq:
+        #     self.logger.info('## {} {}'.format(
+        #         n.get('id'), tidy_notice_content(n.get('title'))))
+
+        # return
 
         # 逐个处理， 提取时间和内容, 去除标记， noticeContent,noticeContent_html,noticePubDate,noticeTitle
         # 按照标题判断是否入库
