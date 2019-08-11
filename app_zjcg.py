@@ -144,6 +144,13 @@ class zjcg():
 
         # 去除重复记录
         full_notices_uniq = self.get_uniq_notice(notices=full_notices)
+
+        # 网站的查询功能失效了，只能人工再次过滤
+        for notic in full_notices_uniq:
+            if not check_title_kw_list(title=notic.get('title')):
+                full_notices_uniq.remove(notic)
+                # self.logger.info('{} {} 不包含关键字, 忽略'.format(
+                #     notic.get('id'), notic.get('title')))
         self.logger.info('得到不重复记录 {} 条'.format(len(full_notices_uniq)))
 
         # 逐个处理， 提取时间和内容, 去除标记， noticeContent,noticeContent_html,noticePubDate,noticeTitle
@@ -176,11 +183,11 @@ class zjcg():
                 self.logger.info(
                     '{} {} 检查到黑名单关键字, 忽略'.format(id, title))
                 continue
-            # 网站的查询功能失效了，只能人工再次过滤
-            elif not check_title_kw_list(title=title):
-                self.logger.info(
-                    '{} {} 不包含关键字, 忽略'.format(id, title))
-                continue
+            # # 网站的查询功能失效了，只能人工再次过滤
+            # elif not check_title_kw_list(title=title):
+            #     self.logger.info(
+            #         '{} {} 不包含关键字, 忽略'.format(id, title))
+            #     continue
             else:
                 self.logger.info('开始插入 {} {}'.format(id, title))
                 notice['source'] = self.source
@@ -220,7 +227,6 @@ class zjcg():
         #     'keyword': '存款',
         #     'url': 'http://notice.zcygov.cn/new/noticeSearch'
         # }
-
 
         # full_url = self.search_path + urlencode(para)
         # logger.info(full_url)
