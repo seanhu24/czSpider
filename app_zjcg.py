@@ -174,7 +174,12 @@ class zjcg():
 
             if check_title_black_list(title=title):
                 self.logger.info(
-                    '{} {} 检查到黑名单关键字 {}, 忽略'.format(id, title, kw))
+                    '{} {} 检查到黑名单关键字, 忽略'.format(id, title))
+                continue
+            # 网站的查询功能失效了，只能人工再次过滤
+            elif not check_title_kw_list(title=title):
+                self.logger.info(
+                    '{} {} 不包含关键字, 忽略'.format(id, title))
                 continue
             else:
                 self.logger.info('开始插入 {} {}'.format(id, title))

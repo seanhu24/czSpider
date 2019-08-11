@@ -10,6 +10,13 @@ def check_title_black_list(title=None):
     return False
 
 
+def check_title_kw_list(title=None):
+    for kw in KEYWORDS:
+        if kw in title:
+            return True
+    return False
+
+
 def get_uniq_notice(notices=None):
     id_list = []
     new_notices = []
