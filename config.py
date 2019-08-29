@@ -87,6 +87,9 @@ LS_MAIN_SEARCH_LINK = [
     ('http://www.lssggzy.com/lsweb/jyxx/071005/071005003/071005003009/', '松阳县', '成交公告'),
     ('http://www.lssggzy.com/lsweb/jyxx/071005/071005003/071005003010/', '景宁畲族自治县', '成交公告')
 ]
-
+# 萧山招投标管理信息网(查看地址)
+XS_MAIN_ZTB_LINK = 'http://www.xszbjyw.com/Module/ModuleView.aspx?ModuleID=4&ViewID=6'
+# 萧山招投标管理信息网(爬虫所用地址)
+XS_MAIN_ZTB_LINK_REAL='http://www.xszbjyw.com//web_news/NewFrom.aspx?news_bigclass=6&ViewID=6'
 FIRE_TIME1 = "10:30"
 FIRE_TIME2 = "16:57"
