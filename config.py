@@ -90,6 +90,6 @@ LS_MAIN_SEARCH_LINK = [
 # 萧山招投标管理信息网(查看地址)
 XS_MAIN_ZTB_LINK = 'http://www.xszbjyw.com/Module/ModuleView.aspx?ModuleID=4&ViewID=6'
 # 萧山招投标管理信息网(爬虫所用地址)
-XS_MAIN_ZTB_LINK_REAL='http://www.xszbjyw.com//web_news/NewFrom.aspx?news_bigclass=6&ViewID=6'
+XS_MAIN_ZTB_LINK_REAL='http://www.xszbjyw.com/web_news/NewFrom.aspx?news_bigclass=34&ViewID=263'
 FIRE_TIME1 = "10:30"
 FIRE_TIME2 = "16:57"
