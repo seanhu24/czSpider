@@ -27,7 +27,7 @@ class zjcg():
 
         self.zj_session = requests.session()
         self.header = {
-            'Referer': 'http://www.zjzfcg.gov.cn/innerUsed_fullTextSearch/index.html?m=1&k=%E5%85%AC%E6%AC%BE&exact=0',
+            'Referer': 'http://www.zjzfcg.gov.cn/innerUsed_fullTextSearch/index.html',
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36'}
 
         self.kws = KEYWORDS
