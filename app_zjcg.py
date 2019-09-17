@@ -21,9 +21,12 @@ class zjcg():
     def __init__(self):
         fileConfig('logging_config.ini')
         self.domain = 'http://www.zjzfcg.gov.cn/'
-        self.search_path = 'http://manager.zjzfcg.gov.cn/cms/api/cors/getRemoteResults?'
+        # self.search_path = 'http://manager.zjzfcg.gov.cn/cms/api/cors/getRemoteResults?'
+        self.search_path = 'http://manager.zjzfcg.gov.cn/cms/api/cors/remote/results?'
         self.logger = logging.getLogger('app_zjcg')
         self.logger.info('浙江省采购网开始...')
+
+        # self.detail_path = 'http://www.zjzfcg.gov.cn/innerUsed_noticeDetails/index.html?'
 
         self.zj_session = requests.session()
         self.header = {
@@ -38,7 +41,7 @@ class zjcg():
 
     def get_main(self):
         self.logger.info('访问首页获取cookies')
-        main_page = 'http://www.zjzfcg.gov.cn/'
+        main_page = 'http://www.zjzfcg.gov.cn/purchaseNotice/index.html'
         resp = self.zj_session.get(main_page, headers=self.header)
         return resp.text
 
@@ -55,7 +58,7 @@ class zjcg():
                     return resp.text
                 return None
             except:
-                self.logger.error('请求索引页出错')
+                self.logger.error('请求索引页出错:' + resp.status_code)
                 for i in range(1, retry + 1):
                     wait = i * 3
                     self.logger.info('等待%d秒' % wait)
@@ -72,11 +75,12 @@ class zjcg():
             'type': 0,
             'keyword': kw,
             'isExact': 0,
-            'url': 'http://notice.zcygov.cn/new/globalFullTextSearch'
+            # 'url': 'http://notice.zcygov.cn/new/globalFullTextSearch'
+            'url': 'fullTestCearch'
         }
 
         full_url = self.search_path + urlencode(para)
-
+        print(full_url)
         res = self.do_get(url=full_url)
         try:
             res_json = json.loads(res)
@@ -88,7 +92,8 @@ class zjcg():
     def get_a_detail(self, noticeId=None):
         para = {
             'noticeId': noticeId,
-            'url': 'http://notice.zcygov.cn/new/noticeDetail'
+            # 'url': 'http://notice.zcygov.cn/new/noticeDetail'
+            'url': 'noticeDetail'
         }
 
         full_url = self.search_path + urlencode(para)
