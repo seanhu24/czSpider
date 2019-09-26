@@ -258,7 +258,7 @@ class zjs():
 
         self.logger.info('开始存放...')
         new_ct = self.store_notice(notices=new_uniq_notices)
-        send_email(receiver=['huxiao_hz@citicbank.com', '16396355@qq.com'],
+        send_email(receiver=[ '16396355@qq.com'],
                    title='浙江省公共资源交易服务平台发送情况', cont='<h1>今日浙江省公共资源交易服务平台采购网新增信息 {} 条</h1>'.format(new_ct))
         self.logger.info('浙江省公共资源交易服务平台结束...')
 

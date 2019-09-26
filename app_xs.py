@@ -186,7 +186,7 @@ def xs_ztb():
             logger.info('更新/插入[%s]成功' % a_item.get('id'))
     curr_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     logger.info('结束处理开始处理萧山招投标信息网数据')
-    send_email(receiver=['huxiao_hz@citicbank.com', '16396355@qq.com', '8206741@163.com'],
+    send_email(receiver=[ '16396355@qq.com', '8206741@163.com'],
     #send_email(receiver=[ '8206741@163.com'],
                title=curr_time+'萧山招投标信息网发送情况', cont='<h1>今日萧山招投标信息网最新更新日期是{}</h1>'.format(newday))
 if __name__ == "__main__":
