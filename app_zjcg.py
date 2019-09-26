@@ -223,7 +223,7 @@ class zjcg():
                 if upsert_to_mongo({'id': id}, notice):
                     self.logger.info('插入 {} {} 成功'.format(id, title))
                     ct += 1
-        send_email(receiver=['huxiao_hz@citicbank.com', '16396355@qq.com'],
+        send_email(receiver=['16396355@qq.com'],
                    title='浙江省采购网发送情况', cont='<h1>今日浙江省采购网新增信息 {} 条</h1>'.format(ct))
         self.logger.info('浙江省采购网结束...')
 
