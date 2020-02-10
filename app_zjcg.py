@@ -20,9 +20,9 @@ class zjcg():
 
     def __init__(self):
         fileConfig('logging_config.ini')
-        self.domain = 'http://www.zjzfcg.gov.cn/'
+        self.domain = 'http://zfcg.czt.zj.gov.cn/'
         # self.search_path = 'http://manager.zjzfcg.gov.cn/cms/api/cors/getRemoteResults?'
-        self.search_path = 'http://manager.zjzfcg.gov.cn/cms/api/cors/remote/results?'
+        self.search_path = 'http://zfcgmanager.czt.zj.gov.cn/cms/api/cors/remote/results?'
         self.logger = logging.getLogger('app_zjcg')
         self.logger.info('浙江省采购网开始...')
 
@@ -30,7 +30,7 @@ class zjcg():
 
         self.zj_session = requests.session()
         self.header = {
-            'Referer': 'http://www.zjzfcg.gov.cn/purchaseNotice/index.html',
+            'Referer': 'http://zfcg.czt.zj.gov.cn/purchaseNotice/index.html',
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36'}
 
         self.kws = KEYWORDS
@@ -41,7 +41,7 @@ class zjcg():
 
     def get_main(self):
         self.logger.info('访问首页获取cookies')
-        main_page = 'http://www.zjzfcg.gov.cn/purchaseNotice/index.html'
+        main_page = 'http://zfcg.czt.zj.gov.cn/purchaseNotice/index.html'
         resp = self.zj_session.get(main_page, headers=self.header)
         return resp.text
 
